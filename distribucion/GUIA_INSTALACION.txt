@@ -1,0 +1,106 @@
+GUIA DE INSTALACION - Fiscalia 8 citacion juicio
+================================================
+
+No hay que instalar Python ni ningun programa: todo viene listo en dos carpetas/ZIP:
+
+  Fiscalia8_Servidor.zip  -> SOLO para la PC del fiscal (la que siempre esta encendida)
+  Fiscalia8_Cliente.zip   -> para CADA PC (la del fiscal tambien) y para su casa
+
+Lleve los ZIP en un pendrive o por una carpeta compartida.
+El orden importa: primero el servidor, despues los clientes.
+
+
+PARTE 1 - PC DEL FISCAL: SERVIDOR (una sola vez)
+------------------------------------------------
+1. Copie Fiscalia8_Servidor.zip a la PC y descomprimalo (clic derecho > "Extraer todo")
+   en una carpeta fija, por ejemplo:  C:\Fiscalia8\Servidor
+   (No lo deje dentro del ZIP ni en el Escritorio de OneDrive.)
+
+2. Abra la carpeta, clic derecho sobre  abrir_firewall.bat  > "Ejecutar como administrador".
+   Debe decir "Listo: puerto 8090 habilitado". Se hace una sola vez.
+
+3. Doble clic en  iniciar_servidor.bat.
+   - Se abre una ventana negra. NO LA CIERRE nunca mientras se trabaja
+     (puede minimizarla).
+   - Si Windows pregunta por el Firewall, elija "Permitir acceso".
+   - En la ventana aparece una linea "Direccion IPv4 ......: 192.168.X.X".
+     ANOTE ESE NUMERO: es la IP del servidor.
+     Si aparecen varias, use la que empieza con 192.168 (o 10.).
+
+4. Para que arranque solo cuando se prende la PC: doble clic en iniciar_con_windows.bat.
+
+5. IP FIJA (importante, para que la IP no cambie):
+   Opcion facil: en el router, reservar esa IP para esta PC (menu "DHCP" / "Reserva de IP").
+   Opcion en Windows: Configuracion > Red e Internet > Ethernet (o Wi-Fi) > su red >
+   "Asignacion de IP" > Editar > Manual > IPv4 activado. Complete:
+     - Direccion IP:  la anotada (ej. 192.168.1.20)
+     - Longitud de prefijo de subred: 24
+     - Puerta de enlace: la del router (normalmente 192.168.1.1; ver con "ipconfig")
+     - DNS: 8.8.8.8
+   Si no se anima, pida ayuda a quien le administra la red.
+
+6. Verifique: en esa PC abra el navegador en  http://127.0.0.1:8090/api/health
+   Debe mostrar "API is healthy".
+
+
+PARTE 2 - CADA PC (fiscal y los 4 usuarios): CLIENTE
+----------------------------------------------------
+1. Copie Fiscalia8_Cliente.zip y descomprimalo en una carpeta fija, por ejemplo
+   C:\Fiscalia8\Cliente
+
+2. Doble clic en  configurar_servidor.bat  y escriba la IP anotada en la Parte 1 (ej. 192.168.1.20).
+   Debe decir "CONEXION OK". Si dice "NO SE PUDO CONECTAR": revise la IP, que el servidor
+   este iniciado y que se haya hecho el paso 2 de la Parte 1.
+
+3. Abra  Fiscalia8.exe  (puede crear un acceso directo en el Escritorio:
+   clic derecho > Enviar a > Escritorio).
+   La primera vez Windows puede decir "Windows protegio su PC":
+   elija "Mas informacion" > "Ejecutar de todas formas".
+
+4. Ingrese con su usuario y contrasena:
+
+   fiscal        -> Fiscal (administra causas y cuentas)
+   Espostodario  -> usuario
+   bufejorge     -> usuario
+   cangijuan     -> usuario
+   turcoalzabe   -> usuario
+   Contrasena inicial de todos: 12345678
+
+5. CAMBIEN LAS CONTRASENAS: el fiscal entra, pestana "Cuentas", elige la cuenta y
+   "Resetear contrasena" (minimo 8 caracteres) y se la comunica a cada persona.
+
+
+PARTE 3 - TRABAJAR DESDE LA CASA (Tailscale)
+--------------------------------------------
+Sirve para usar la aplicacion fuera de la fiscalia sin exponer nada a internet.
+Es gratis para uso personal.
+
+1. En la PC del fiscal: descargue e instale Tailscale desde https://tailscale.com/download
+   (Windows) e inicie sesion con una cuenta (Google/Microsoft/etc).
+   Luego haga clic en el icono de Tailscale (barra de tareas) y copie la "IP de Tailscale"
+   de esa PC: empieza con 100.   (ejemplo 100.101.102.103)
+2. En su PC de casa: instale Tailscale y entre con LA MISMA cuenta.
+   (Si usa otra cuenta, desde el panel de Tailscale se puede compartir la PC del fiscal.)
+3. En su casa, use Fiscalia8_Cliente.zip: ejecute configurar_servidor.bat y escriba la
+   IP que empieza con 100. (la de Tailscale del servidor).
+4. Tailscale debe estar conectado (icono activo) en ambas PCs, y el servidor iniciado.
+
+La PC del fiscal debe estar encendida y con el servidor iniciado para que se pueda
+entrar, tanto desde la fiscalia como desde la casa.
+
+
+COPIA DE SEGURIDAD (recomendado)
+--------------------------------
+En la PC del fiscal, de vez en cuando: cierre la ventana negra del servidor, ejecute
+copia_de_seguridad.bat (crea la carpeta "copias" con la fecha) y vuelva a iniciar el servidor.
+Copie esa carpeta a un pendrive.
+
+
+PROBLEMAS FRECUENTES
+--------------------
+- "No se pudo conectar con el servidor": el servidor no esta iniciado, la IP del .env es
+  incorrecta (vuelva a ejecutar configurar_servidor.bat) o falta abrir_firewall.bat.
+- "Usuario o contrasena incorrectos, o cuenta desactivada": revise mayusculas
+  (Espostodario empieza con mayuscula) o pida al fiscal reactivar la cuenta.
+- Dejo de funcionar de un dia para otro en todas las PCs: probablemente cambio la IP del
+  servidor. Mire la IP en la ventana del servidor y repita configurar_servidor.bat.

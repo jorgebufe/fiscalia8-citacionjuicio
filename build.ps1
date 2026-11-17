@@ -20,7 +20,7 @@ python -m PyInstaller --noconfirm --clean --onefile --windowed `
     --name "Fiscalia8" --distpath "dist\Cliente" main.py
 if ($LASTEXITCODE -ne 0) { throw "PyInstaller fallo" }
 Set-Content "dist\Cliente\.env" "PB_URL=http://127.0.0.1:8090" -Encoding ascii
-Copy-Item "distribucion\cliente\LEEME.txt" "dist\Cliente\LEEME.txt"
+Copy-Item "distribucion\cliente\*" "dist\Cliente\"
 
 # --- Servidor: PocketBase limpio preparado en una carpeta temporal ---
 $tmp = Join-Path $env:TEMP "fiscalia8_build_pb"
@@ -57,4 +57,9 @@ Copy-Item -Recurse (Join-Path $tmp "pb_hooks") "dist\Servidor\pb_hooks"
 Copy-Item "distribucion\servidor\*" "dist\Servidor\"
 Remove-Item -Recurse -Force $tmp
 
-Write-Host "Listo: dist\Cliente y dist\Servidor"
+# --- ZIP listos para llevar en un pendrive + guia ---
+Copy-Item "distribucion\GUIA_INSTALACION.txt" "dist\GUIA_INSTALACION.txt"
+Compress-Archive -Path "dist\Servidor\*" -DestinationPath "dist\Fiscalia8_Servidor.zip" -Force
+Compress-Archive -Path "dist\Cliente\*" -DestinationPath "dist\Fiscalia8_Cliente.zip" -Force
+
+Write-Host "Listo: dist\Fiscalia8_Servidor.zip, dist\Fiscalia8_Cliente.zip y dist\GUIA_INSTALACION.txt"

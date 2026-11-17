@@ -3,7 +3,8 @@ CLIENTE - Fiscalia 8 citacion juicio
 Va en la PC de cada usuario (y del fiscal).
 
 1) Copie esta carpeta a la PC, por ejemplo a C:\Fiscalia8\Cliente
-2) Abra el archivo ".env" con el Bloc de notas y cambie la linea:
+2) Facil: doble clic en configurar_servidor.bat y escriba la IP del servidor.
+   Manual: abra el archivo ".env" con el Bloc de notas y cambie la linea:
        PB_URL=http://127.0.0.1:8090
    por la direccion del servidor (la PC del fiscal), por ejemplo:
        PB_URL=http://192.168.1.20:8090
