@@ -24,4 +24,4 @@
 
 - [x] 4.1 Script `build.ps1` que genera el `.exe` y arma `dist/`; verificar que el ejecutable inicia
 - [x] 4.2 README con instrucciones de uso; verificar que los comandos documentados funcionan
-- [ ] 4.3 Commit inicial y publicación en GitHub (repo público `fiscalia8-citacionjuicio`)
+- [x] 4.3 Commit inicial y publicación en GitHub (repo público `fiscalia8-citacionjuicio`)
