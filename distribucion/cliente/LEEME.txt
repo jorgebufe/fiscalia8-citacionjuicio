@@ -1,0 +1,19 @@
+CLIENTE - Fiscalia 8 citacion juicio
+====================================
+Va en la PC de cada usuario (y del fiscal).
+
+1) Copie esta carpeta a la PC, por ejemplo a C:\Fiscalia8\Cliente
+2) Abra el archivo ".env" con el Bloc de notas y cambie la linea:
+       PB_URL=http://127.0.0.1:8090
+   por la direccion del servidor (la PC del fiscal), por ejemplo:
+       PB_URL=http://192.168.1.20:8090
+   - En la PC del fiscal puede dejar 127.0.0.1.
+   - Desde fuera de la fiscalia (casa) use la direccion de Tailscale del servidor,
+     por ejemplo PB_URL=http://100.x.x.x:8090
+3) Haga doble clic en Fiscalia8.exe e ingrese con su usuario y contrasena.
+
+Si dice "No se pudo conectar con el servidor": verifique que la PC del fiscal tenga
+iniciado el servidor y que la direccion del .env sea correcta.
+
+Windows puede mostrar "Windows protegio su PC" la primera vez: elija
+"Mas informacion" -> "Ejecutar de todas formas".

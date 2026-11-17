@@ -27,13 +27,20 @@ Reiniciá PocketBase después de `setup_pocketbase.py` para que cargue los hooks
 
 Cuentas iniciales: `fiscal` (admin), `Espostodario`, `bufejorge`, `cangijuan`, `turcoalzabe`, todas con la contraseña `DEFAULT_USER_PASSWORD` del `.env`. **Cambialas** desde el panel de cuentas.
 
-## Ejecutable
+## Instalación en varias PCs
 
 ```powershell
 .\build.ps1
 ```
 
-Genera `dist\Fiscalia8\Fiscalia8.exe` con la carpeta `pocketbase` al lado. Si `PB_URL` es local y el servidor no está activo, el ejecutable lo inicia solo.
+Genera dos paquetes en `dist\` (no se versionan):
+
+- `dist\Servidor`: PocketBase limpio (colecciones, reglas, hook y las 5 cuentas) para la **PC del fiscal**, que queda encendida. Incluye `iniciar_servidor.bat`, `abrir_firewall.bat` (ejecutar como administrador una vez), `iniciar_con_windows.bat` y `copia_de_seguridad.bat`. Escucha en `0.0.0.0:8090`.
+- `dist\Cliente`: `Fiscalia8.exe` y un `.env` con solo `PB_URL`. Se copia a cada PC (incluida la del fiscal) y se edita `PB_URL` con la IP de la PC del fiscal, por ejemplo `http://192.168.1.20:8090`. Reservar esa IP en el router.
+
+Para trabajar desde fuera de la oficina sin abrir puertos al internet, usar [Tailscale](https://tailscale.com) en el servidor y en esa PC, y poner la IP `100.x.x.x` del servidor en `PB_URL`.
+
+Si el `.exe` encuentra una carpeta `pocketbase` al lado y `PB_URL` es local, inicia PocketBase solo (modo una sola PC).
 
 ## Pruebas
 

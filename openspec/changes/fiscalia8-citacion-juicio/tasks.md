@@ -25,3 +25,8 @@
 - [x] 4.1 Script `build.ps1` que genera el `.exe` y arma `dist/`; verificar que el ejecutable inicia
 - [x] 4.2 README con instrucciones de uso; verificar que los comandos documentados funcionan
 - [x] 4.3 Commit inicial y publicación en GitHub (repo público `fiscalia8-citacionjuicio`)
+
+## 5. Instalación en varias PCs
+
+- [x] 5.1 Separar `build.ps1` en paquetes `dist\Servidor` (PocketBase limpio con cuentas y reglas) y `dist\Cliente` (exe + .env); verificado con `tests.test_flujo` contra el servidor del paquete usando la IP de la red local
+- [x] 5.2 Scripts y LEEME de servidor (firewall, inicio con Windows, copias) y de cliente (editar `PB_URL`)

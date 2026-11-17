@@ -1,0 +1,19 @@
+SERVIDOR - Fiscalia 8 citacion juicio
+=====================================
+Va SOLO en la PC del fiscal (la que esta siempre encendida).
+
+1) Copie esta carpeta completa a la PC, por ejemplo a C:\Fiscalia8\Servidor
+2) Clic derecho en abrir_firewall.bat -> "Ejecutar como administrador" (una sola vez).
+3) Haga doble clic en iniciar_servidor.bat. Aparece una ventana negra: NO la cierre.
+   Ahi se muestra la direccion IPv4 de esta PC (ejemplo 192.168.1.20).
+4) Opcional: iniciar_con_windows.bat hace que arranque solo al encender la PC.
+5) IMPORTANTE: en el router, reserve esa IP para esta PC (o configure IP fija en Windows)
+   para que la direccion no cambie. Si cambia, los clientes dejan de conectarse.
+
+Panel de administracion de PocketBase: http://127.0.0.1:8090/_/
+(usuario y clave del superusuario: los entrega quien instalo el sistema)
+
+Copias de seguridad: cierre el servidor y use copia_de_seguridad.bat de vez en cuando.
+
+Cuentas iniciales (cambie las claves desde la app, pestana "Cuentas"):
+  fiscal (admin), Espostodario, bufejorge, cangijuan, turcoalzabe.
