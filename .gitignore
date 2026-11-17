@@ -1,0 +1,8 @@
+﻿.env
+pocketbase/
+dist/
+build/
+*.spec
+__pycache__/
+.venv/
+*.pyc
