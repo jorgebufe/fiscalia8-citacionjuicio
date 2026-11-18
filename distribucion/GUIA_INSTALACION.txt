@@ -26,6 +26,10 @@ PARTE 1 - PC DEL FISCAL: SERVIDOR (una sola vez)
    - En la ventana aparece una linea "Direccion IPv4 ......: 192.168.X.X".
      ANOTE ESE NUMERO: es la IP del servidor.
      Si aparecen varias, use la que empieza con 192.168 (o 10.).
+   - Cuando aparezca "Server started at http://0.0.0.0:8090" el servidor YA
+     ESTA FUNCIONANDO. Despues de eso la ventana no muestra nada mas: es lo normal.
+   - Para comprobarlo, abra verificar_servidor.bat: debe decir "SERVIDOR FUNCIONANDO".
+   - Si la ventana muestra un ERROR, tome una foto y enviela.
 
 4. Para que arranque solo cuando se prende la PC: doble clic en iniciar_con_windows.bat.
 

@@ -59,6 +59,12 @@ Remove-Item -Recurse -Force $tmp
 
 # --- ZIP listos para llevar en un pendrive + guia ---
 Copy-Item "distribucion\GUIA_INSTALACION.txt" "dist\GUIA_INSTALACION.txt"
+
+# Los .bat y .txt deben tener saltos de linea de Windows (CRLF) para que cmd los lea bien.
+Get-ChildItem dist -Recurse -Include *.bat, *.txt | ForEach-Object {
+    $t = [IO.File]::ReadAllText($_.FullName) -replace "`r?`n", "`r`n"
+    [IO.File]::WriteAllText($_.FullName, $t, (New-Object Text.UTF8Encoding($false)))
+}
 Compress-Archive -Path "dist\Servidor\*" -DestinationPath "dist\Fiscalia8_Servidor.zip" -Force
 Compress-Archive -Path "dist\Cliente\*" -DestinationPath "dist\Fiscalia8_Cliente.zip" -Force
 
